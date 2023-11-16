@@ -1,11 +1,11 @@
 pushd android
 # # flutter build generates files in android/ for building the app
-#flutter build apk
-#./gradlew app:assembleAndroidTest
-#./gradlew app:assembleDebug -Ptarget=integration_test/app_test.dart
+flutter build apk --debug
+./gradlew app:assembleAndroidTest
+./gradlew app:assembleDebug -Ptarget=integration_test/app_test.dart
 
 
-./gradlew app:connectedAndroidTest -Ptarget=`pwd`/../integration_test/app_test.dart
+#./gradlew app:connectedAndroidTest -Ptarget=`pwd`/../integration_test/app_test.dart
 popd
 
 #gcloud auth activate-service-account --key-file=wiredbraincoffee-a1386-4485fb96c69f.json
