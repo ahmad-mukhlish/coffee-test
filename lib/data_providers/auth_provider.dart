@@ -6,10 +6,10 @@ class AuthProvider extends InheritedWidget {
   const AuthProvider({
     required Key key,
     required Widget child,
-    required this.auth,
+    this.auth,
   }) : super(key: key, child: child);
 
-  final BaseAuth auth;
+  final BaseAuth? auth;
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) => true;

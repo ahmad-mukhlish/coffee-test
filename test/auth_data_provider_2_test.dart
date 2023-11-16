@@ -1,15 +1,14 @@
+import 'package:coffee_test/data_providers/auth_data_provider.dart';
+import 'package:coffee_test/data_providers/http_client.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
-
-import '../lib/data_providers/auth_data_provider.dart';
-import '../lib/data_providers/http_client.dart';
+import 'package:mockito/mockito.dart';
 
 class MockHttpClient extends Mock implements HttpClient {}
 
 main() {
-  HttpClient mockHttpClient;
-  AuthDataProvider authDataProvider;
+  HttpClient? mockHttpClient;
+  AuthDataProvider? authDataProvider;
 
   setUpAll(() {
     mockHttpClient = MockHttpClient();
@@ -27,7 +26,7 @@ main() {
   group('DataProvider', () {
     group('SignInWithPasswordUsername', () {
       setUp(() {
-        when(mockHttpClient.post(any, any)).thenAnswer(
+        when(mockHttpClient?.post("", "")).thenAnswer(
           (realInvocation) => Future.value(
             http.Response('success', 200),
           ),
@@ -39,22 +38,22 @@ main() {
       });
 
       test('should return true with correct username and password', () async {
-        final String password = 'password';
-        final String email = 'username';
+        const String password = 'password';
+        const String email = 'username';
 
-        final bool res =
-            await authDataProvider.signInWithEmailAndPassword(email, password);
+        final bool? res =
+            await authDataProvider?.signInWithEmailAndPassword(email, password);
 
         // assert
         expect(res, true);
       });
 
       test('should return false with incorrect username or password', () async {
-        final String password = 'wrongpassword';
-        final String email = 'username';
+        const String password = 'wrongpassword';
+        const String email = 'username';
 
-        final bool res =
-            await authDataProvider.signInWithEmailAndPassword(email, password);
+        final bool? res =
+            await authDataProvider?.signInWithEmailAndPassword(email, password);
 
         // assert
         expect(res, true);
@@ -63,7 +62,7 @@ main() {
 
     group('signOut', () {
       setUp(() {
-        when(mockHttpClient.get(any)).thenAnswer(
+        when(mockHttpClient?.get("")).thenAnswer(
           (realInvocation) => Future.value(
             http.Response('success', 200),
           ),
@@ -71,7 +70,7 @@ main() {
       });
       test('should return true with log out', () async {
         // act
-        final bool res = await authDataProvider.signOut();
+        final bool? res = await authDataProvider?.signOut();
 
         // assert
         expect(res, true);

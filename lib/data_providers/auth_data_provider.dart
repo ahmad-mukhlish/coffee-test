@@ -7,15 +7,16 @@ import 'http_client.dart';
 
 abstract class BaseAuth {
   Future<bool> signInWithEmailAndPassword(String email, String password);
+
   Future<bool> signOut();
 }
 
 class AuthDataProvider implements BaseAuth {
   const AuthDataProvider({
-    required this.http,
+    this.http,
   });
 
-  final HttpClient http;
+  final HttpClient? http;
 
   @override
   Future<bool> signInWithEmailAndPassword(
@@ -23,15 +24,15 @@ class AuthDataProvider implements BaseAuth {
     String password,
   ) async {
     final String body = jsonEncode({email: email, password: password});
-    final Response res = await http.post('API_ENDPOINT', body);
+    final Response? res = await http?.post('API_ENDPOINT', body);
 
-    return res.statusCode == 200;
+    return res?.statusCode == 200;
   }
 
   @override
   Future<bool> signOut() async {
-    final Response res = await http.get('API_ENDPOINT');
+    final Response? res = await http?.get('API_ENDPOINT');
 
-    return res.statusCode == 200;
+    return res?.statusCode == 200;
   }
 }

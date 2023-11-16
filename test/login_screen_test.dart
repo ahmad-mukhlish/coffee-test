@@ -1,9 +1,10 @@
+import 'package:coffee_test/data_providers/auth_data_provider.dart';
+import 'package:coffee_test/screens/login.dart';
+import 'package:coffee_test/screens/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import '../lib/data_providers/auth_data_provider.dart';
-import '../lib/screens/login.dart';
-import '../lib/screens/menu.dart';
+
 import 'test_widget_wrapper.dart';
 
 class MockAuthDataProvider extends Mock implements BaseAuth {}
@@ -135,7 +136,7 @@ void main() {
         await tester.enterText(passwordField, 'incorrectpassword');
 
         when(
-          mockAuth.signInWithEmailAndPassword(any, any),
+          mockAuth.signInWithEmailAndPassword('', ''),
         ).thenAnswer(
           (realInvocation) => Future.value(false),
         );
@@ -171,8 +172,8 @@ void main() {
 
         when(
           mockAuth.signInWithEmailAndPassword(
-            any,
-            any,
+            '',
+            '',
           ),
         ).thenAnswer(
           (realInvocation) => Future.value(true),

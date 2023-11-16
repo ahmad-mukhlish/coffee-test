@@ -1,9 +1,8 @@
+import 'package:coffee_test/data_providers/auth_data_provider.dart';
+import 'package:coffee_test/data_providers/http_client.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
-
-import '../lib/data_providers/auth_data_provider.dart';
-import '../lib/data_providers/http_client.dart';
+import 'package:mockito/mockito.dart';
 
 class MockHttpClient extends Mock implements HttpClient {}
 
@@ -16,10 +15,10 @@ main() {
         final AuthDataProvider authDataProvider = AuthDataProvider(
           http: mockHttpClient,
         );
-        final String password = 'password';
-        final String email = 'username';
+        const String password = 'password';
+        const String email = 'username';
 
-        when(mockHttpClient.post(any, any)).thenAnswer(
+        when(mockHttpClient.post('', '')).thenAnswer(
           (realInvocation) => Future.value(
             http.Response('success', 200),
           ),
@@ -42,7 +41,7 @@ main() {
           http: mockHttpClient,
         );
 
-        when(mockHttpClient.get(any)).thenAnswer(
+        when(mockHttpClient.get('')).thenAnswer(
           (realInvocation) => Future.value(
             http.Response('success', 200),
           ),

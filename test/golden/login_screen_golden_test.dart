@@ -1,19 +1,20 @@
+import 'package:coffee_test/coffee_router.dart';
+import 'package:coffee_test/data_providers/auth_data_provider.dart';
+import 'package:coffee_test/data_providers/auth_provider.dart';
+import 'package:coffee_test/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import '../../lib/data_providers/auth_data_provider.dart';
-import '../../lib/coffee_router.dart';
-import '../../lib/screens/login.dart';
-import '../../lib/data_providers/auth_provider.dart';
 
 class MockAuthDataProvider extends Mock implements BaseAuth {}
 
 void main() {
   final loginScaffoldKey = GlobalKey<ScaffoldState>();
 
-  Widget makeTestableWidget({Widget child, BaseAuth auth}) {
+  Widget makeTestableWidget({required Widget child, BaseAuth? auth}) {
     return AuthProvider(
       auth: auth,
+      key: const Key("try"),
       child: MaterialApp(
         home: child,
         navigatorKey: CoffeeRouter.instance.navigatorKey,
