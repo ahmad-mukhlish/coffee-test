@@ -13,7 +13,7 @@ class LoginScreen extends StatefulWidget {
     @required this.scaffoldKey,
   }) : assert(scaffoldKey != null);
 
-  final scaffoldKey;
+  final GlobalKey<ScaffoldState>? scaffoldKey;
 
   static String routeName = 'loginScreen';
 
@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       key: widget.scaffoldKey,
       appBar: AppBar(
-        title: Text("Login"),
+        title: const Text("Login"),
         actions: [
           Image.asset(
             "assets/wired-brain-coffee-logo.png",
@@ -80,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
   List<Widget> _buildInputs() {
     return <Widget>[
       TextFormField(
-        key: Key('email'),
+        key: const Key('email'),
         controller: _emailFieldController,
         decoration: InputDecoration(
           labelText: 'Username',
@@ -101,9 +101,9 @@ class _LoginScreenState extends State<LoginScreen> {
         cursorColor: darkBrown,
         validator: Validators.validateEmail,
       ),
-      SizedBox(height: 30),
+      const SizedBox(height: 30),
       TextFormField(
-        key: Key('password'),
+        key: const Key('password'),
         controller: _passwordFieldController,
         autocorrect: false,
         obscureText: true,
@@ -124,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
         cursorColor: darkBrown,
         validator: Validators.validatePassword,
       ),
-      SizedBox(height: 10),
+      const SizedBox(height: 10),
     ];
   }
 
@@ -142,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ],
       ),
-      SizedBox(height: 30),
+      const SizedBox(height: 30),
     ];
   }
 
@@ -154,16 +154,16 @@ class _LoginScreenState extends State<LoginScreen> {
           ClipRRect(
               borderRadius: BorderRadius.circular(25),
               child: TextButton(
-                key: Key('signIn'),
+                key: const Key('signIn'),
                 onPressed: _onSubmitLoginButton,
                 child: Text(
                   "Log In",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: darkBrown),
                 ),
               )),
         ],
       ),
-      SizedBox(height: 15),
+      const SizedBox(height: 15),
     ];
   }
 
@@ -185,7 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ],
       ),
-      SizedBox(height: 35),
+      const SizedBox(height: 35),
     ];
   }
 
@@ -196,7 +196,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   _onSubmitLoginButton() async {
     if (_isFormValidated() ?? false) {
-      widget.scaffoldKey.currentState.showSnackBar(_loadingSnackBar());
+      ScaffoldMessenger.of(context).showSnackBar(_loadingSnackBar());
 
       final BaseAuth? auth = AuthProvider.of(context)?.auth;
       final String email = _emailFieldController.text;
@@ -206,22 +206,23 @@ class _LoginScreenState extends State<LoginScreen> {
         password,
       );
 
-      widget.scaffoldKey.currentState.hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
       if (loggedIn) {
         CoffeeRouter.instance.push(MenuScreen.route());
       } else {
-        final snackBar = SnackBar(
+        const snackBar = SnackBar(
           backgroundColor: Colors.red,
           content: Text('Your username / password is incorrect'),
         );
-        widget.scaffoldKey.currentState.showSnackBar(snackBar);
+
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     }
   }
 
-  Widget _loadingSnackBar() {
-    return SnackBar(
+  SnackBar _loadingSnackBar() {
+    return const SnackBar(
       content: Row(
         children: <Widget>[
           CircularProgressIndicator(),

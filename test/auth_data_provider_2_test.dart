@@ -25,7 +25,7 @@ main() {
   group('DataProvider', () {
     group('SignInWithPasswordUsername', () {
       setUp(() {
-        when(mockHttpClient?.post(any, "")).thenAnswer(
+        when(mockHttpClient?.post(any, any)).thenAnswer(
           (realInvocation) => Future.value(
             http.Response('success', 200),
           ),
@@ -61,7 +61,7 @@ main() {
 
     group('signOut', () {
       setUp(() {
-        when(mockHttpClient?.get("")).thenAnswer(
+        when(mockHttpClient?.get(any)).thenAnswer(
           (realInvocation) => Future.value(
             http.Response('success', 200),
           ),

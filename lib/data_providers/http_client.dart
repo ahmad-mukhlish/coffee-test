@@ -6,7 +6,7 @@ class HttpClient {
 
     final uri =
         Uri.dataFromString('https://dummyapi.io/data/api/user?limit=10');
-    await http.get(uri);
+    // await http.get(uri);
     return Future.delayed(
       const Duration(seconds: 1),
       () => http.Response('success', 200),
@@ -19,7 +19,7 @@ class HttpClient {
     final uri =
         Uri.dataFromString('https://dummyapi.io/data/api/user?limit=10');
 
-    await http.get(uri);
+    // await http.get(uri);
     return Future.delayed(
       const Duration(seconds: 1),
       () => http.Response('success', 200),

@@ -8,10 +8,12 @@ import 'login.dart';
 class HomeScreen extends StatefulWidget {
   static String routeName = 'homeScreen';
 
+  const HomeScreen({super.key});
+
   static Route<HomeScreen> route() {
     return MaterialPageRoute<HomeScreen>(
       settings: RouteSettings(name: routeName),
-      builder: (BuildContext context) => HomeScreen(),
+      builder: (BuildContext context) => const HomeScreen(),
     );
   }
 
@@ -41,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
               semanticsLabel: 'Wire Brain Coffee',
               fit: BoxFit.fitWidth,
             ),
-            Text(
+            const Text(
               "Get the best coffee!",
               style: TextStyle(
                   fontFamily: 'Raleway',

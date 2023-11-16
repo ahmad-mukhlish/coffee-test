@@ -40,15 +40,24 @@ Future<void> main() async {
 
     await Firebase.initializeApp();
   }, (error, stackTrace) async {
-    print('Caught Dart Error!');
-    if (isInDebugMode) {
-      // in development, print error and stack trace
-      print('$error');
-      print('$stackTrace');
-    } else {
-      // report to a error tracking system in production
-      FirebaseCrashlytics.instance.recordError(error, stackTrace);
-    }
+    debugPrint('$error');
+    debugPrint('$stackTrace');
+
+    // if (kDebugMode) {
+    //   print('Caught Dart Error!');
+    // }
+    // if (isInDebugMode) {
+    //   // in development, print error and stack trace
+    //   if (kDebugMode) {
+    //     print('$error');
+    //   }
+    //   if (kDebugMode) {
+    //     print('$stackTrace');
+    //   }
+    // } else {
+    //   // report to a error tracking system in production
+    //   FirebaseCrashlytics.instance.recordError(error, stackTrace);
+    // }
   });
 
   // You only need to call this method if you need the binding to be initialized before calling runApp.
