@@ -75,6 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     )),
                 OutlinedButton(
+                  key: const Key('homeLoginButton'),
                   onPressed: () {
                     Navigator.of(context).push(
                       LoginScreen.route(loginScaffoldKey),
