@@ -1,5 +1,5 @@
+import 'package:coffee_test/helpers/validators.dart';
 import 'package:flutter_test/flutter_test.dart';
-import '../lib/helpers/validators.dart';
 
 void main() {
   group(

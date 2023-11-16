@@ -1,8 +1,7 @@
+import 'package:coffee_test/coffee_router.dart';
+import 'package:coffee_test/data_providers/auth_data_provider.dart';
+import 'package:coffee_test/data_providers/auth_provider.dart';
 import 'package:flutter/material.dart';
-
-import '../lib/coffee_router.dart';
-import '../lib/data_providers/auth_data_provider.dart';
-import '../lib/data_providers/auth_provider.dart';
 
 Widget makeTestableWidget({required Widget child, BaseAuth? auth}) {
   return AuthProvider(

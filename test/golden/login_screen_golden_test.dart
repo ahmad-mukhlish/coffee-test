@@ -4,9 +4,6 @@ import 'package:coffee_test/data_providers/auth_provider.dart';
 import 'package:coffee_test/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-
-class MockAuthDataProvider extends Mock implements BaseAuth {}
 
 void main() {
   final loginScaffoldKey = GlobalKey<ScaffoldState>();

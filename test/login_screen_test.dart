@@ -3,12 +3,13 @@ import 'package:coffee_test/screens/login.dart';
 import 'package:coffee_test/screens/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import 'login_screen_test.mocks.dart';
 import 'test_widget_wrapper.dart';
 
-class MockAuthDataProvider extends Mock implements BaseAuth {}
-
+@GenerateNiceMocks([MockSpec<AuthDataProvider>()])
 void main() {
   final loginScaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -77,7 +78,7 @@ void main() {
           makeTestableWidget(child: page, auth: mockAuth),
         );
 
-        await tester.tap(find.byKey(Key('signIn')));
+        await tester.tap(find.byKey(const Key('signIn')));
 
         verifyNever(mockAuth.signInWithEmailAndPassword('', 'password'));
 
@@ -129,10 +130,10 @@ void main() {
           makeTestableWidget(child: page, auth: mockAuth),
         );
 
-        Finder emailField = find.byKey(Key('email'));
+        Finder emailField = find.byKey(const Key('email'));
         await tester.enterText(emailField, 'incorrectemail');
 
-        Finder passwordField = find.byKey(Key('password'));
+        Finder passwordField = find.byKey(const Key('password'));
         await tester.enterText(passwordField, 'incorrectpassword');
 
         when(
@@ -141,7 +142,7 @@ void main() {
           (realInvocation) => Future.value(false),
         );
 
-        await tester.tap(find.byKey(Key('signIn')));
+        await tester.tap(find.byKey(const Key('signIn')));
 
         await tester.pump();
 

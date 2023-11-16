@@ -1,13 +1,12 @@
 import 'package:coffee_test/data_providers/auth_data_provider.dart';
-import 'package:coffee_test/data_providers/http_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 
-class MockHttpClient extends Mock implements HttpClient {}
+import 'auth_data_provider_test.mocks.dart';
 
 main() {
-  HttpClient? mockHttpClient;
+  MockHttpClient? mockHttpClient;
   AuthDataProvider? authDataProvider;
 
   setUpAll(() {
@@ -26,7 +25,7 @@ main() {
   group('DataProvider', () {
     group('SignInWithPasswordUsername', () {
       setUp(() {
-        when(mockHttpClient?.post("", "")).thenAnswer(
+        when(mockHttpClient?.post(any, "")).thenAnswer(
           (realInvocation) => Future.value(
             http.Response('success', 200),
           ),
