@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
         controller: _emailFieldController,
         decoration: InputDecoration(
           labelText: 'Username',
-          hintText: 'me@majidhajian.com',
+          hintText: 'johndoe@gmail.com',
           labelStyle: TextStyle(color: darkBrown),
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
