@@ -43,11 +43,11 @@ void main() {
 
       Finder emailField = find.byKey(const Key('email'));
       expect(emailField, findsOneWidget);
-      await tester.enterText(emailField, 'email');
+      await tester.enterText(emailField, 'ahmad@gmail.com');
 
       Finder passwordField = find.byKey(const Key('password'));
       expect(passwordField, findsOneWidget);
-      await tester.enterText(passwordField, 'password');
+      await tester.enterText(passwordField, 'securepassword');
 
       await tester.tap(find.byKey(const Key('signIn')));
 
