@@ -19,7 +19,7 @@ void main() {
 
       await tester.pumpAndSettle(const Duration(seconds: 3));
 
-      final homeLoginButton = find.byKey(const Key('homeLoginButton'));
+      final homeLoginButton = find.byKey(const Key('loginButton'));
 
       expect(homeLoginButton, findsOneWidget);
 
@@ -32,12 +32,13 @@ void main() {
   );
 
   testWidgets(
-    "Loading -> tab login button -> enter correct username password -> see MenuScreen",
+    "Loading -> tab login button ->"
+    " enter correct username password -> see MenuScreen",
     (WidgetTester tester) async {
       app.main();
       await tester.pump();
       await tester.pumpAndSettle(const Duration(seconds: 3));
-      final homeLoginButton = find.byKey(const Key('homeLoginButton'));
+      final homeLoginButton = find.byKey(const Key('loginButton'));
       await tester.tap(homeLoginButton);
       await tester.pumpAndSettle();
 
